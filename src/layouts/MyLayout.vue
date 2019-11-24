@@ -10,11 +10,9 @@
           icon="menu"
           aria-label="Menu"
         />
-
         <q-toolbar-title>
           Visual Program
         </q-toolbar-title>
-
         <!--<div>Quasar v{{ $q.version }}</div>-->
       </q-toolbar>
     </q-header>-->
@@ -84,8 +82,8 @@
           </q-item-section>
         </q-item>
       </q-list>-->
-    </q-drawer>
-
+    </q-drawer><br/><br/>
+    <menuBar></menuBar>
     <q-page-container>
       <router-view />
     </q-page-container>
@@ -94,9 +92,11 @@
 
 <script>
 import FilterMenu from '../components/FilterMenu'
+import menuBar from '../components/menuBar'
 export default {
   components: {
-    FilterMenu
+    FilterMenu,
+    menuBar
   },
   name: 'MyLayout',
 
