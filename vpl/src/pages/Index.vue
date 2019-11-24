@@ -1,11 +1,21 @@
 <template>
-  <q-page class="flex flex-center">
-    <img alt="Quasar logo" src="~assets/quasar-logo-full.svg">
+  <q-page>
+    <menuBar></menuBar>
   </q-page>
 </template>
 
+<style>
+</style>
+
 <script>
+import menuBar from '../components/menuBar.vue'
+
 export default {
-  name: 'PageIndex'
+  name: 'PageIndex',
+  components: {
+    menuBar
+  },
+  methods: {
+  }
 }
 </script>
