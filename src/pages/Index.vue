@@ -1,85 +1,66 @@
 <template>
-  <q-page></q-page>
-  <!--<div class="q-pa-md">
-    <q-layout view="hHh Lpr lff" container style="height: 300px" class="shadow-2 rounded-borders">
-      <q-header elevated class="bg-black">
-        <q-toolbar>
-          <q-btn flat @click="drawer = !drawer" round dense icon="menu" />
-          <q-toolbar-title>Visual Program</q-toolbar-title>
-        </q-toolbar>
-      </q-header>
-
-      <q-drawer
-        v-model="drawer"
-        show-if-above
-        :width="200"
-        :breakpoint="500"
-        bordered
-        content-class="bg-grey-3"
-      >
-        <q-scroll-area class="fit">
-          <q-btn size="25px" color="blue" no-caps>
-            Filter<br>A
-          </q-btn>
-          <q-btn size="25px" color="blue" no-caps>
-            Filter<br>B
-          </q-btn> <br/>
-          <q-btn size="25px" color="blue" no-caps>
-            Filter<br>C
-          </q-btn>
-          <q-btn size="25px" color="blue" no-caps>
-            Filter<br>D
-          </q-btn> <br/>
-        </q-scroll-area>
-      </q-drawer>
-    </q-layout>
-  </div>-->
+  <q-page>
+    <PuzzlePieces :color="color1" class="q-ma-md movable"
+                  :style="{'left': x1 + 'px', 'top': y1 + 'px'}"
+                  @mousedown.native="moveStart($event, 1)" @mouseup.native="moveEnd($event,1)" @mousemove.native="moveActive($event, 1)" ref="puzzle1"></PuzzlePieces>
+    <PuzzlePieces :color="color2" class="q-ma-md movable"
+                  :style="{'left': x2 + 'px', 'top': y2 + 'px'}"
+                  @mousedown.native="moveStart($event, 2)" @mouseup.native="moveEnd($event,2)" @mousemove.native="moveActive($event, 2)" ref="puzzle2"></PuzzlePieces>
+  </q-page>
 </template>
 
-<script>
-const menuList = [
-  {
-    icon: 'inbox',
-    label: 'Inbox',
-    separator: true
-  },
-  {
-    icon: 'send',
-    label: 'Outbox',
-    separator: false
-  },
-  {
-    icon: 'delete',
-    label: 'Trash',
-    separator: false
-  },
-  {
-    icon: 'error',
-    label: 'Spam',
-    separator: true
-  },
-  {
-    icon: 'settings',
-    label: 'Settings',
-    separator: false
-  },
-  {
-    icon: 'feedback',
-    label: 'Send Feedback',
-    separator: false
-  },
-  {
-    icon: 'help',
-    iconColor: 'primary',
-    label: 'Help',
-    separator: false
+<style>
+  .movable {
+    display: inline-block;
+    padding: 0px;
+    position: absolute;
   }
-]
+</style>
+
+<script>
+import PuzzlePieces from '../components/PuzzlePieces'
 export default {
+  components: {
+    PuzzlePieces
+  },
   data () {
     return {
       drawer: false,
-      menuList
+      x1: 200,
+      y1: 200,
+      x2: 400,
+      y2: 400,
+      color1: 'blue',
+      color2: 'blue',
+      origcolor1: 'blue',
+      origcolor2: 'blue'
+    }
+  },
+  methods: {
+    moveStart: function (event, index) {
+      this.moving = true
+      this['offsetInitX' + index] = event.offsetX
+      this['offsetInitY' + index] = event.offsetY
+    },
+    moveActive: function (event, index) {
+      if (this.moving) {
+        this['x' + index] += event.offsetX - this['offsetInitX' + index]
+        this['y' + index] += event.offsetY - this['offsetInitY' + index]
+        var boundBox1 = this.$refs.puzzle1.$el.getBoundingClientRect()
+        var boundBox2 = this.$refs.puzzle2.$el.getBoundingClientRect()
+        var overlap = !(boundBox1.right < boundBox2.left ||
+          boundBox1.left > boundBox2.right ||
+          boundBox1.bottom < boundBox2.top ||
+          boundBox1.top > boundBox2.bottom)
+        if (overlap) {
+          this['color' + index] = 'green'
+        } else {
+          this['color' + index] = this['origcolor' + index]
+        }
+      }
+    },
+    moveEnd: function (event, index) {
+      this.moving = false
     }
   }
 }
