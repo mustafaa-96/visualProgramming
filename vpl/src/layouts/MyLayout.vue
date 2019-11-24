@@ -10,22 +10,22 @@
           icon="menu"
           aria-label="Menu"
         />
-
         <q-toolbar-title>
-          Quasar App
+          Visual Program
         </q-toolbar-title>
-
-        <div>Quasar v{{ $q.version }}</div>
+        <!--<div>Quasar v{{ $q.version }}</div>-->
       </q-toolbar>
-    </q-header>
+    </q-header>-->
 
     <q-drawer
       v-model="leftDrawerOpen"
       show-if-above
+      :width="250"
       bordered
       content-class="bg-grey-2"
     >
-      <q-list>
+      <FilterMenu></FilterMenu>
+      <!--<q-list>
         <q-item-label header>Essential Links</q-item-label>
         <q-item clickable tag="a" target="_blank" href="https://quasar.dev">
           <q-item-section avatar>
@@ -81,9 +81,9 @@
             <q-item-label caption>@QuasarFramework</q-item-label>
           </q-item-section>
         </q-item>
-      </q-list>
-    </q-drawer>
-
+      </q-list>-->
+    </q-drawer><br/><br/>
+    <menuBar></menuBar>
     <q-page-container>
       <router-view />
     </q-page-container>
@@ -91,7 +91,13 @@
 </template>
 
 <script>
+import FilterMenu from '../components/FilterMenu'
+import menuBar from '../components/menuBar'
 export default {
+  components: {
+    FilterMenu,
+    menuBar
+  },
   name: 'MyLayout',
 
   data () {

@@ -1,11 +1,11 @@
 {
-  "name": "vpl",
+  "name": "visualprogramming",
   "version": "0.0.1",
   "description": "A Quasar Framework app",
   "productName": "Quasar App",
   "cordovaId": "org.cordova.quasar.app",
   "capacitorId": "",
-  "author": "Alexander Senger, Mustafa Abdelrahman, Kevin Hohmann",
+  "author": "",
   "private": true,
   "scripts": {
     "lint": "eslint --ext .js,.vue src",
