@@ -1,26 +1,33 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
+  <q-layout view="lHr LpR lFf">
     <q-header elevated>
       <q-toolbar>
         <q-btn
           flat
           dense
           round
-          @click="leftDrawerOpen = !leftDrawerOpen"
+          @click="left = !left"
           icon="menu"
           aria-label="Menu"
         />
+
         <q-toolbar-title>
           Visual Program
         </q-toolbar-title>
+        <q-btn
+          flat
+          dense
+          round
+          @click="right = !right"
+          icon="menu"
+         />
         <!--<div>Quasar v{{ $q.version }}</div>-->
       </q-toolbar>
     </q-header>-->
 
     <q-drawer
-      v-model="leftDrawerOpen"
-      show-if-above
-      :width="250"
+      show-if-above v-model="left"
+      side="left"
       bordered
       content-class="bg-grey-2"
     >
@@ -84,25 +91,36 @@
       </q-list>-->
     </q-drawer><br/><br/>
     <menuBar></menuBar>
+
     <q-page-container>
       <router-view />
     </q-page-container>
+    <q-drawer
+    show-if-above v-model="right"
+    side="right"
+    bordered>
+      <previewField></previewField>
+    </q-drawer>
+
   </q-layout>
 </template>
 
 <script>
 import FilterMenu from '../components/FilterMenu'
 import menuBar from '../components/menuBar'
+import previewField from '../components/previewField'
 export default {
   components: {
     FilterMenu,
-    menuBar
+    menuBar,
+    previewField
   },
   name: 'MyLayout',
 
   data () {
     return {
-      leftDrawerOpen: false
+      left: false,
+      right: false
     }
   }
 }

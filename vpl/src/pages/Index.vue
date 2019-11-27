@@ -25,7 +25,6 @@ export default {
   },
   data () {
     return {
-      drawer: false,
       x1: 200,
       y1: 200,
       x2: 400,
