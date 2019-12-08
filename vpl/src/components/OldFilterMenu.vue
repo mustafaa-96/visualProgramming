@@ -35,8 +35,8 @@
         </q-item>
       </q-list>
     </q-btn-dropdown> <br/> <br/> <br/>
-    <q-btn size="25px" color="orange" no-caps>
-      Filter<br>A
+    <q-btn size="25px" color="orange" no-caps @click="addBWFilter">
+      Black<br>and White
     </q-btn> <div class="space"/>
     <q-btn size="25px" color="orange" no-caps>
       Filter<br>B
@@ -79,9 +79,17 @@
 <script>
 export default {
   name: 'FilterMenu',
+  data () {
+    return {
+      text: 'green'
+    }
+  },
   methods: {
     onItemClick () {
       // TODO: show button group for each analysis procedure
+    },
+    addBWFilter: function () {
+      this.$emit('emmited', this.text)
     }
   }
 }

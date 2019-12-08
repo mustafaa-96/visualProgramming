@@ -4,14 +4,27 @@
       <span class="r"></span>
       <span class="b"></span>
       <span class="l"></span>
-      <span class="text">Drag me</span>
+      <q-btn
+      @click="addBAndW()"
+      rounded>Black and White</q-btn>
     </div>
 </template>
 
 <script>
 export default {
   props: ['color'],
-  name: 'PuzzlePieces'
+  name: 'PuzzlePieces',
+  data () {
+    return {
+      bwURL: 'https://i.imgur.com/ZNWGGIY.jpg'
+    }
+  },
+  methods: {
+    addBAndW: function () {
+      this.$emit('newBW', this.bwURL)
+    }
+  }
+
 }
 </script>
 
@@ -86,5 +99,8 @@ export default {
     -moz-border-radius: 4em;
     border-radius: 4em;
     background-color: #fff;
+  }
+  .puzzle .button {
+
   }
 </style>
