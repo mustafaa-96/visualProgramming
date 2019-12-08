@@ -83,8 +83,7 @@
         </q-item>
       </q-list>-->
     </q-drawer><br/><br/>
-    <menuBar></menuBar>
-    <q-page-container>
+    <q-page-container style="padding-top:0">
       <router-view />
     </q-page-container>
   </q-layout>
@@ -92,11 +91,9 @@
 
 <script>
 import FilterMenu from '../components/FilterMenu'
-import menuBar from '../components/menuBar'
 export default {
   components: {
-    FilterMenu,
-    menuBar
+    FilterMenu
   },
   name: 'MyLayout',
 

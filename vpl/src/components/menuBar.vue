@@ -16,11 +16,12 @@ export default {
   // name: 'ComponentName',
   data () {
     return {
+      unDoctoredImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Houghton_MS_Gr_20_-_Theogeny%2C_10.jpg/1200px-Houghton_MS_Gr_20_-_Theogeny%2C_10.jpg'
     }
   },
   methods: {
     open: function () {
-      alert('Under construction')
+      this.$emit('emitted', this.unDoctoredImage)
     },
     save: function () {
       alert('Under construction')

@@ -1,11 +1,16 @@
 <template>
   <q-page>
+    <menuBar @emitted="receiveData"></menuBar>
     <PuzzlePieces :color="color1" class="q-ma-md movable"
                   :style="{'left': x1 + 'px', 'top': y1 + 'px'}"
                   @mousedown.native="moveStart($event, 1)" @mouseup.native="moveEnd($event,1)" @mousemove.native="moveActive($event, 1)" ref="puzzle1"></PuzzlePieces>
     <PuzzlePieces :color="color2" class="q-ma-md movable"
                   :style="{'left': x2 + 'px', 'top': y2 + 'px'}"
                   @mousedown.native="moveStart($event, 2)" @mouseup.native="moveEnd($event,2)" @mousemove.native="moveActive($event, 2)" ref="puzzle2"></PuzzlePieces>
+    <imagePiece :URL="sourceURL"
+                class="movable"
+                :style="{'left': x3 + 'px', 'top': y3 + 'px'}"
+                  @mousedown.native="moveStart($event, 3)" @mouseup.native="moveEnd($event,3)" @mousemove.native="moveActive($event, 3)" ref="puzzle3"></imagePiece>
   </q-page>
 </template>
 
@@ -18,10 +23,14 @@
 </style>
 
 <script>
+import menuBar from '../components/menuBar'
 import PuzzlePieces from '../components/PuzzlePieces'
+import imagePiece from '../components/imagePiece'
 export default {
   components: {
-    PuzzlePieces
+    PuzzlePieces,
+    imagePiece,
+    menuBar
   },
   data () {
     return {
@@ -30,13 +39,19 @@ export default {
       y1: 200,
       x2: 400,
       y2: 400,
+      x3: 0,
+      y3: 0,
       color1: 'blue',
       color2: 'blue',
       origcolor1: 'blue',
-      origcolor2: 'blue'
+      origcolor2: 'blue',
+      sourceURL: ''
     }
   },
   methods: {
+    receiveData: function (e) {
+      this.sourceURL = e
+    },
     moveStart: function (event, index) {
       this.moving = true
       this['offsetInitX' + index] = event.offsetX
