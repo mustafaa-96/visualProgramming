@@ -20,7 +20,7 @@
     <q-drawer
       v-model="leftDrawerOpen"
       show-if-above
-      :width="250"
+      :width="285"
       bordered
       content-class="bg-grey-2"
     >

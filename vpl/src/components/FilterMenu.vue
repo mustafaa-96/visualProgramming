@@ -4,7 +4,7 @@
     <br/> <br/>
     <q-btn-dropdown class="dropdown" color="orange" label="Select Analysis Procedure">
       <q-list>
-        <q-item class="item" clickable v-close-popup @click="onItemClick">
+        <q-item class="item" clickable v-close-popup @click="onItemClick1">
           <q-item-section>
             <q-item-label>Image Processing</q-item-label>
           </q-item-section>
@@ -36,17 +36,27 @@
       </q-list>
     </q-btn-dropdown> <br/> <br/> <br/>
     <q-btn size="25px" color="orange" no-caps>
-      Filter<br>A
+      Black<br>& White
     </q-btn> <div class="space"/>
-    <q-btn size="25px" color="orange" no-caps>
-      Filter<br>B
+    <q-btn size="25px" color="orange" no-caps @click="contrastSliderOpen = !contrastSliderOpen">
+      Change<br>Contrast
     </q-btn> <br/> <br/> <br/>
     <q-btn size="25px" color="orange" no-caps>
       Filter<br>C
     </q-btn> <div class="space"/>
     <q-btn size="25px" color="orange" no-caps>
       Filter<br>D
-    </q-btn> <br/>
+    </q-btn> <br/> <br/> <br/>
+    <q-form v-model="contrastSliderOpen" class="q-pa-md">
+      <q-slider
+        v-model="value"
+        :min="0"
+        :max="200"
+        :step="4"
+        label="contrastSlider"
+        color="orange"
+        />
+    </q-form>
   </q-scroll-area>
 </template>
 
@@ -82,6 +92,15 @@ export default {
   methods: {
     onItemClick () {
       // TODO: show button group for each analysis procedure
+    },
+    onItemClick1 () {
+      // TODO: show button group for each analysis procedure
+    }
+  },
+  data () {
+    return {
+      contrastSliderOpen: false,
+      value: 0
     }
   }
 }
