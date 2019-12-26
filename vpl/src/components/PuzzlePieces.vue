@@ -1,5 +1,11 @@
 <template>
-  <div :style="{'background': color}" class="pointer"></div>
+  <div :style="{'background': color}" class="puzzle">
+      <span class="t"></span>
+      <span class="r"></span>
+      <span class="b"></span>
+      <span class="l"></span>
+      <span class="text">Drag me</span>
+    </div>
 </template>
 
 <script>
@@ -10,31 +16,75 @@ export default {
 </script>
 
 <style>
-  .pointer {
-    width: 75px;
-    height: 40px;
+
+  .puzzle {
+    width: 6em;
+    height: 6em;
+    margin: 50px;
     position: relative;
+    -webkit-border-radius: .5em;
+    -moz-border-radius: .5em;
+    border-radius: .5em;
+    cursor: pointer;
   }
-  .pointer:after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 0;
-    height: 0;
-    border-left: 20px solid white;
-    border-top: 20px solid transparent;
-    border-bottom: 20px solid transparent;
+
+  .puzzle,
+  .puzzle span {
+    background-color: blue;
   }
-  .pointer:before {
-    content: "";
+  .text {
+    display: block;
+    color: #fff;
+    font-size: 1.2em;
+    text-align: center;
+    padding: 1.9em 0 0 1.2em;
+    position: relative;
+    background: transparent !important;
+  }
+
+  .puzzle .t{
+    width: 2em;
+    height: 2em;
     position: absolute;
-    right: -20px;
-    bottom: 0;
-    width: 0;
-    height: 0;
-    border-left: 20px solid orange;
-    border-top: 20px solid transparent;
-    border-bottom: 20px solid transparent;
+    top: -1.5em;
+    left: 2em;
+    -webkit-border-radius: 4em;
+    -moz-border-radius: 4em;
+    border-radius: 4em;
+  }
+
+  .puzzle .r {
+    width: 2em;
+    height: 2em;
+    position: absolute;
+    top: 2em;
+    left: 5.5em;
+    -webkit-border-radius: 4em;
+    -moz-border-radius: 4em;
+    border-radius: 4em;
+  }
+
+  .puzzle .b {
+    width: 1.8em;
+    height: 1.8em;
+    position: absolute;
+    top: 4.5em;
+    left: 2.2em;
+    -webkit-border-radius: 4em;
+    -moz-border-radius: 4em;
+    border-radius: 4em;
+    background-color: #fff;
+  }
+
+  .puzzle .l {
+    width: 1.8em;
+    height: 1.8em;
+    position: absolute;
+    top: 2.2em;
+    left: -.4em;
+    -webkit-border-radius: 4em;
+    -moz-border-radius: 4em;
+    border-radius: 4em;
+    background-color: #fff;
   }
 </style>
