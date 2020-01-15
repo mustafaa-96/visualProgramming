@@ -20,7 +20,7 @@
         <q-tab-panels v-model="tab" animated>
           <q-tab-panel name="pic">
             <div class="text-h6"></div>
-            <q-img :src="undoctoredURL" spinner-color="white"/>
+            There is supposed to be a picture here later.
           </q-tab-panel>
 
           <q-tab-panel name="text">
@@ -37,9 +37,7 @@ export default {
   name: 'previewField',
   data () {
     return {
-      tab: 'pic',
-      URL: '',
-      undoctoredURL: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Houghton_MS_Gr_20_-_Theogeny%2C_10.jpg/1200px-Houghton_MS_Gr_20_-_Theogeny%2C_10.jpg'
+      tab: 'pic'
     }
   }
 }

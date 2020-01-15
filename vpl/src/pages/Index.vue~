@@ -1,6 +1,12 @@
 <template>
   <q-page>
     <menuBar @emitted="receiveData"></menuBar>
+    <PuzzlePieces :color="color1" class="q-ma-md movable"
+                  :style="{'left': x1 + 'px', 'top': y1 + 'px'}"
+                  @mousedown.native="moveStart($event, 1)" @mouseup.native="moveEnd($event,1)" @mousemove.native="moveActive($event, 1)" ref="puzzle1"></PuzzlePieces>
+    <PuzzlePieces :color="color2" class="q-ma-md movable"
+                  :style="{'left': x2 + 'px', 'top': y2 + 'px'}"
+                  @mousedown.native="moveStart($event, 2)" @mouseup.native="moveEnd($event,2)" @mousemove.native="moveActive($event, 2)" ref="puzzle2"></PuzzlePieces>
     <imagePiece :URL="sourceURL"
                 :contrast="contrast"
                 class="movable"
@@ -24,10 +30,12 @@
 <script>
 import NewFilterMenu from '../components/NewFilterMenu'
 import menuBar from '../components/menuBar'
+import PuzzlePieces from '../components/PuzzlePieces'
 import imagePiece from '../components/imagePiece'
 import BlackAndWhitePiece from '../components/BlackAndWhitePiece'
 export default {
   components: {
+    PuzzlePieces,
     imagePiece,
     menuBar,
     NewFilterMenu,
