@@ -2,7 +2,7 @@
   <q-img
         :src="URL"
         spinner-color="white"
-        :style="{'width':'200px', 'filter': 'contrast('+ contrast + '%)'}"
+        :style="{'width':'280px', 'height' : '400px', 'filter': 'contrast('+ contrast + '%)'}"
     />
 </template>
 

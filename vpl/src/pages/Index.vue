@@ -7,15 +7,14 @@
     <PuzzlePieces :color="color2" class="q-ma-md movable"
                   :style="{'left': x2 + 'px', 'top': y2 + 'px'}"
                   @mousedown.native="moveStart($event, 2)" @mouseup.native="moveEnd($event,2)" @mousemove.native="moveActive($event, 2)" ref="puzzle2"></PuzzlePieces>
-    <imagePiece :URL="sourceURL"
-                :contrast="contrast"
-                class="movable"
-                :style="{'left': x3 + 'px', 'top': y3 + 'px'}"
-                  @mousedown.native="moveStart($event, 3)" @mouseup.native="moveEnd($event,3)" @mousemove.native="moveActive($event, 3)" ref="puzzle3"></imagePiece>
     <BlackAndWhitePiece :color="color1" class="q-ma-md movable"
                   :style="{'left': x4 + 'px', 'top': y4 + 'px'}"
                   @mousedown.native="moveStart($event, 4)" @mouseup.native="moveEnd($event,4)" @mousemove.native="moveActive($event, 4)" @newBW="newBWFilter" ref="puzzle4"></BlackAndWhitePiece>
-    <NewFilterMenu @contrast="getContrast" @newBW="setBWCoord"></NewFilterMenu>
+    <NewFilterMenu @contrast="getContrast" @newBW="setBWCoord" @text="setText"></NewFilterMenu>
+    <rightDrawer :previewURL="sourceURL"
+                 :previewContrast="contrast"
+                 :previewText="text">
+                 </rightDrawer>
   </q-page>
 </template>
 
@@ -31,15 +30,15 @@
 import NewFilterMenu from '../components/NewFilterMenu'
 import menuBar from '../components/menuBar'
 import PuzzlePieces from '../components/PuzzlePieces'
-import imagePiece from '../components/imagePiece'
 import BlackAndWhitePiece from '../components/BlackAndWhitePiece'
+import rightDrawer from '../components/rightDrawer'
 export default {
   components: {
     PuzzlePieces,
-    imagePiece,
     menuBar,
     NewFilterMenu,
-    BlackAndWhitePiece
+    BlackAndWhitePiece,
+    rightDrawer
   },
   data () {
     return {
@@ -49,9 +48,6 @@ export default {
       // Puzzle2
       x2: 400,
       y2: 400,
-      // Image
-      x3: 0,
-      y3: 0,
       // BlackAndWhite
       x4: 1000,
       y4: 1000,
@@ -61,17 +57,7 @@ export default {
       origcolor2: 'blue',
       sourceURL: '',
       text: '',
-      contrast: 100,
-
-      // Separate arrays for tracking different elements
-
-      // The arrays can also hold other properties of the elements apart from their positions
-      // I'll leave that as an exercise
-
-      // Any addition to the array will create a new element to the screen
-      positionBlackAndWhite: [],
-      positionImagePiece: []
-
+      contrast: 100
     }
   },
   methods: {
@@ -113,6 +99,11 @@ export default {
     setBWCoord: function () {
       this.x4 = 200
       this.y4 = 400
+    },
+    setText: function () {
+      if (this.sourceURL === 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Houghton_MS_Gr_20_-_Theogeny%2C_10.jpg/1200px-Houghton_MS_Gr_20_-_Theogeny%2C_10.jpg') {
+        this.text = 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet'
+      }
     }
   }
 }

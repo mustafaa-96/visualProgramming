@@ -47,8 +47,8 @@
     <q-btn size="20px" color="orange" no-caps @click="contrastSliderOpen = !contrastSliderOpen">
       Change<br>Contrast
     </q-btn> <div class="space"/> <br/> <br/> <br/>
-    <q-btn size="25px" color="orange" no-caps>
-      Filter<br>C
+    <q-btn size="25px" color="orange" no-caps @click="filterText()">
+      Filter text
     </q-btn> <div class="space"/>
     <q-btn size="25px" color="orange" no-caps>
       Filter<br>D
@@ -111,12 +111,14 @@ export default {
     },
     updateContrast: function () {
       this.$emit('contrast', this.value)
+    },
+    filterText: function () {
+      this.$emit('text')
     }
   },
   data () {
     return {
       open: false,
-      test: 'yellow',
       contrastSliderOpen: false,
       value: 100,
       bwURL: 'https://i.imgur.com/ZNWGGIY.jpg'
@@ -124,14 +126,7 @@ export default {
   },
   props: {
     leftDrawerOpen: Boolean
-  },
-  watch: {
-    // if it's changed in the layout we want to change it here too
-    leftDrawerOpen: function () {
-      this.changeState()
-    }
   }
-
 }
 </script>
 
