@@ -4,7 +4,7 @@
       <span class="r"></span>
       <span class="b"></span>
       <span class="l"></span>
-      <span class="text">Drag me</span>
+      <span class="text">Image</span>
     </div>
 </template>
 

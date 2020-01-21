@@ -4,9 +4,7 @@
       <span class="r"></span>
       <span class="b"></span>
       <span class="l"></span>
-      <q-btn
-      @click="addBAndW()"
-      rounded>Black and White</q-btn>
+      <span class="text">Black and White</span>
     </div>
 </template>
 
@@ -48,9 +46,9 @@ export default {
   .text {
     display: block;
     color: #fff;
-    font-size: 1.2em;
+    font-size: 1em;
     text-align: center;
-    padding: 1.9em 0 0 1.2em;
+    padding: 1.8em 0 0 1.2em;
     position: relative;
     background: transparent !important;
   }
