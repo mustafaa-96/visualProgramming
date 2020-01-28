@@ -99,8 +99,17 @@ export default {
       this.y2 = 400
     },
     setText: function () {
-      if (this.sourceURL !== '') {
+      if (this.sourceURL !== '' && this.contrast === 100) {
         this.text = 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet'
+      } else if (this.contrast !== 100) {
+        alert('Change contrast back to default value (100)')
+        this.text = ''
+      } else if (this.sourceURL === 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Houghton_MS_Gr_20_-_Theogeny%2C_10.jpg/1200px-Houghton_MS_Gr_20_-_Theogeny%2C_10.jpg') {
+        alert('Remove Black and White Filter')
+        this.text = ''
+      } else if (this.contrast !== 100 && this.sourceURL === 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Houghton_MS_Gr_20_-_Theogeny%2C_10.jpg/1200px-Houghton_MS_Gr_20_-_Theogeny%2C_10.jpg') {
+        alert('Remove Black and White Filter and change contrast back to default value (100)')
+        this.text = ''
       }
     }
   }

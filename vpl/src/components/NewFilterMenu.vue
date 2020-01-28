@@ -44,7 +44,7 @@
     <q-btn size="25px" color="orange" no-caps @click="addBAndW()">
       Black<br>and White
     </q-btn> <div class="space"/>
-    <q-btn size="20px" color="orange" no-caps @click="contrastSliderOpen = !contrastSliderOpen">
+    <q-btn size="20px" color="orange" no-caps @click="toggleSlider()">
       Change<br>Contrast
     </q-btn> <div class="space"/> <br/> <br/> <br/>
     <q-btn size="25px" color="orange" no-caps @click="filterText()">
@@ -53,14 +53,15 @@
     <q-btn size="25px" color="orange" no-caps>
       Filter<br>D
     </q-btn> <br/>
-    <q-form v-model="contrastSliderOpen" class="q-pa-md">
+    <q-form v-model="disable" class="q-pa-md">
       <q-slider
+        this.disable
         v-model="value"
         @input="updateContrast"
         :min="0"
         :max="200"
         :step="4"
-        label="contrastSlider"
+        label
         color="orange"
         />
     </q-form>
@@ -114,18 +115,21 @@ export default {
     },
     filterText: function () {
       this.$emit('text')
+    },
+    toggleSlider: function () {
+      this.disable = !this.disable
     }
   },
   data () {
     return {
       open: false,
-      contrastSliderOpen: false,
       value: 100,
       bwURL: 'https://i.imgur.com/ZNWGGIY.jpg'
     }
   },
   props: {
-    leftDrawerOpen: Boolean
+    leftDrawerOpen: Boolean,
+    disable: Boolean
   }
 }
 </script>
